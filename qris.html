@@ -324,7 +324,8 @@ const PROCESS_KEY = 'gf_payment_processing_v1';
 const EMAILJS = {
 url: 'https://api.emailjs.com/api/v1.0/email/send',
 serviceId: 'service_ynugzqh',
-templateId: 'template_2vruur5',
+adminTemplate: 'template_2vruur5',
+autoReplyTemplate: '',
 publicKey: 'NSIn5d3O1_8JmCvEz',
 timeoutMs: 8000
 };
@@ -555,14 +556,7 @@ if (rec && rec.orderId === orderId) localStorage.setItem(PROCESS_KEY, JSON.strin
 };
 const sendEmailJS = () => {
 const waDigits = String(order.wa || '').replace(/[\s-]/g, '');
-return timeoutFetch(EMAILJS.url, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-body: JSON.stringify({
-service_id: EMAILJS.serviceId,
-template_id: EMAILJS.templateId,
-user_id: EMAILJS.publicKey,
-template_params: {
+const params = {
 event: EVENT_TITLE,
 order_id: orderId,
 status: 'Menunggu Verifikasi Pembayaran',
@@ -582,12 +576,17 @@ receipt_type: receipt ? receipt.type : '-',
 pemegang_tiket: buildHoldersText(),
 submitted_at: new Date().toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'medium' }),
 reply_to: order.email || ''
-}
-})
-}, EMAILJS.timeoutMs).then(
-r => { updateProcessRecord({ emailStatus: r && r.ok ? 'sent' : 'failed' }); },
-() => { updateProcessRecord({ emailStatus: 'failed' }); }
-);
+};
+const send = tid => timeoutFetch(EMAILJS.url, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+body: JSON.stringify({ service_id: EMAILJS.serviceId, template_id: tid, user_id: EMAILJS.publicKey, template_params: params })
+}, EMAILJS.timeoutMs).then(r => !!(r && r.ok), () => false);
+const tasks = [send(EMAILJS.adminTemplate)];
+if (EMAILJS.autoReplyTemplate) tasks.push(send(EMAILJS.autoReplyTemplate));
+return Promise.all(tasks).then(results => {
+updateProcessRecord({ emailStatus: results.some(ok => ok) ? 'sent' : 'failed' });
+});
 };
 const swapText = (el, txt) => {
 if (el.textContent === txt) return;
