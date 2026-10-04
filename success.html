@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Informasi pembayaran pending Titik Balik dan instruksi pembayaran ulang.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pembayaran Pending — Titik Balik">
+<meta property="og:description" content="Pembayaran berstatus Pending karena QRIS mencapai limit. Ikuti instruksi pembayaran ulang dari Customer WhatsApp resmi.">
+<meta property="og:image" content="poster.jpg">
+<meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="poster.jpg">
+<title>Pembayaran Pending — Titik Balik</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e50914'/%3E%3Cpath d='M32 15 54 49H10Z' fill='none' stroke='%23fff' stroke-width='5' stroke-linejoin='round'/%3E%3Crect x='29.5' y='28' width='5' height='12' rx='2.5' fill='%23fff'/%3E%3Ccircle cx='32' cy='45' r='2.8' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="poster.jpg" fetchpriority="high">
+<style>
+:root{
+  --red:#e50914;
+  --ink:#111318;
+  --line:#e8ebf0;
+  --green:#18a957;
+  --shadow:0 24px 70px rgba(17,19,24,.10);
+  --shadow2:0 12px 35px rgba(17,19,24,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#fff;color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(201,145,50,.07),transparent 28%),
+    radial-gradient(circle at 100% 30%,rgba(229,9,20,.045),transparent 25%);
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;padding:0;border:0;background:none;cursor:pointer}
+:focus-visible{outline:3px solid rgba(229,9,20,.55);outline-offset:3px}
+.skip{position:fixed;top:12px;left:12px;z-index:200;padding:11px 16px;border-radius:12px;background:var(--ink);color:#fff;font-size:12px;font-weight:900;transform:translateY(-200%);transition:transform .2s ease}
+.skip:focus{transform:none}
+#konten:focus{outline:none}
+.container{width:min(1120px,calc(100% - 32px));margin:auto}
+.top{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.86);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(17,19,24,.07);
+}
+.top-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand img{width:44px;height:44px;border-radius:13px;box-shadow:0 7px 20px rgba(0,0,0,.13)}
+.brand-text{font-size:12px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.brand-text small{display:block;color:#98a0ad;font-size:9px;letter-spacing:.18em;margin-top:3px}
+.live{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 11px;border-radius:999px;
+  background:#fff3f3;color:var(--red);font-size:10px;font-weight:900;
+  border:1px solid #ffd8da;text-transform:uppercase;letter-spacing:.08em
+}
+.live i{width:7px;height:7px;background:var(--red);border-radius:50%;box-shadow:0 0 0 5px rgba(229,9,20,.08);animation:pulse 1.7s infinite}
+@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+@keyframes sheen{0%{left:-90%}45%,100%{left:130%}}
+.hero{padding:54px 0 38px}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:42px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 13px;border:1px solid #f1dcae;border-radius:999px;
+  color:#93671e;background:#fffaf0;font-size:10px;font-weight:900;
+  letter-spacing:.14em;text-transform:uppercase
+}
+.alert-title{
+  margin:18px 0 13px;
+  font-size:clamp(43px,6vw,76px);
+  line-height:.92;letter-spacing:-.055em;font-weight:900
+}
+.alert-title .red{color:var(--red)}
+.sub{
+  margin:0;max-width:650px;color:#515a68;
+  font-size:clamp(15px,2vw,18px);line-height:1.72
+}
+.instruction{
+  margin-top:24px;border:1px solid var(--line);border-radius:25px;
+  background:#fff;box-shadow:var(--shadow);overflow:hidden
+}
+.instruction-head{
+  padding:18px 20px;display:flex;gap:13px;align-items:center;
+  background:linear-gradient(135deg,#fff,#fff7f7);border-bottom:1px solid #f0f1f4
+}
+.warn{
+  width:43px;height:43px;flex:0 0 43px;border-radius:14px;
+  display:grid;place-items:center;background:var(--red);color:#fff;font-size:22px;font-weight:900;
+  box-shadow:0 8px 22px rgba(229,9,20,.18)
+}
+.instruction-head strong{font-size:15px}
+.instruction-head span{display:block;color:#7b8491;font-size:12px;margin-top:3px}
+.step-list{padding:7px 20px 17px}
+.step{
+  display:grid;grid-template-columns:40px 1fr;gap:13px;
+  padding:15px 0;border-bottom:1px solid #f0f1f4
+}
+.step:last-child{border-bottom:0}
+.num{
+  width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+  background:#fff8e9;border:1px solid #efd59f;color:#a36c16;font-weight:900;font-size:13px
+}
+.step h3{margin:0 0 4px;font-size:14px}
+.step p{margin:0;color:#6c7480;font-size:12.5px;line-height:1.62}
+.cta{margin-top:18px;display:flex;flex-wrap:wrap;gap:11px}
+.btn{
+  min-height:51px;padding:0 18px;border-radius:15px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-weight:900;font-size:13px;transition:.25s ease;border:1px solid transparent
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-wa{position:relative;overflow:hidden;background:var(--green);color:#fff;box-shadow:0 13px 28px rgba(24,169,87,.18)}
+.btn-wa::after{
+  content:"";position:absolute;top:0;bottom:0;left:-90%;width:55%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:skewX(-22deg);animation:sheen 4.6s ease-in-out 1.6s infinite
+}
+.btn-info{background:#fff;border-color:#dfe3e8;color:#20252d;box-shadow:var(--shadow2)}
+.wa-icon{width:19px;height:19px;fill:currentColor}
+.poster-wrap{
+  position:relative;padding:9px;border-radius:29px;
+  background:linear-gradient(145deg,#f4d88f,#fff 30%,#e9e1d5 70%,#d4aa55);
+  box-shadow:0 30px 70px rgba(17,19,24,.16)
+}
+.poster-wrap:after{
+  content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.65);
+  border-radius:22px;pointer-events:none
+}
+.poster-wrap img{width:100%;border-radius:21px;position:relative;z-index:1}
+.section{padding:35px 0 70px}
+#informasi{scroll-margin-top:90px}
+.section-head{text-align:center;margin-bottom:24px}
+.section-head .mini{font-size:10px;font-weight:900;color:#a67628;letter-spacing:.18em;text-transform:uppercase}
+.section-head h2{margin:8px 0 7px;font-size:clamp(29px,4vw,43px);letter-spacing:-.04em}
+.section-head p{margin:auto;max-width:680px;color:#707988;font-size:13px;line-height:1.65}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{
+  border:1px solid var(--line);border-radius:24px;background:#fff;overflow:hidden;
+  box-shadow:var(--shadow2)
+}
+.card-media{background:#f5f6f8;overflow:hidden}
+.zoom{display:block;width:100%;cursor:zoom-in}
+.zoom:focus-visible{outline-offset:-3px}
+.card-media img{width:100%;height:380px;object-fit:cover;transition:transform .45s ease}
+.card:hover .card-media img{transform:scale(1.025)}
+.card-body{padding:18px 20px 20px}
+.card-body h3{margin:0 0 6px;font-size:16px}
+.card-body p{margin:0;color:#747d89;font-size:12.5px;line-height:1.65}
+.note{
+  margin-top:18px;padding:18px 20px;border-radius:20px;
+  border:1px solid #eadfca;background:#fffcf5;color:#555e6b;font-size:12px;line-height:1.7
+}
+.note strong{color:#272b32}
+.final{padding:38px 0 72px;text-align:center}
+.final-box{
+  padding:35px 22px;border-radius:28px;
+  background:linear-gradient(145deg,#fff,#faf8f4);
+  border:1px solid #eee6d9;box-shadow:var(--shadow2)
+}
+.final-box h2{margin:0 0 8px;font-size:27px;letter-spacing:-.03em}
+.final-box p{margin:0 auto 18px;max-width:670px;color:#707988;line-height:1.7;font-size:13px}
+.final-wa{display:inline-flex}
+footer{
+  padding:25px 0 38px;border-top:1px solid #edf0f3;text-align:center;
+  color:#929aa5;font-size:10.5px;line-height:1.7
+}
+.lightbox{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  padding:18px;background:rgba(255,255,255,.93);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease
+}
+.lightbox.show{opacity:1;visibility:visible}
+.lightbox img{max-width:95vw;max-height:90vh;object-fit:contain;border-radius:16px;box-shadow:0 25px 70px rgba(0,0,0,.2);transform:scale(.97);transition:transform .25s ease}
+.lightbox.show img{transform:none}
+.close{
+  position:fixed;right:17px;top:17px;width:44px;height:44px;border-radius:50%;
+  border:1px solid #dfe3e8;background:#fff;color:#111;font-size:23px
+}
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.22,.61,.36,1),transform .75s cubic-bezier(.22,.61,.36,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .d1{transition-delay:.09s}
+.js .d2{transition-delay:.18s}
+.js .d3{transition-delay:.27s}
+.js .d4{transition-delay:.36s}
+@media(max-width:850px){
+  .hero-grid{grid-template-columns:1fr;gap:27px}
+  .poster-wrap{max-width:520px;margin:auto}
+  .cards{grid-template-columns:1fr}
+  .card-media img{height:auto;max-height:560px}
+}
+@media(max-width:520px){
+  .container{width:min(100% - 20px,1120px)}
+  .top-inner{height:67px}
+  .brand-text{font-size:10px}
+  .live{font-size:8px;padding:7px 9px}
+  .hero{padding-top:34px}
+  .alert-title{font-size:49px}
+  .instruction{border-radius:21px}
+  .cta{display:grid}
+  .btn{width:100%}
+  .poster-wrap{border-radius:23px}
+  .poster-wrap img{border-radius:16px}
+}
+@page{margin:12mm}
+@media print{
+  .skip,.lightbox,.cta,.live{display:none}
+  body:before{display:none}
+  .top{position:static}
+  .hero{padding-top:10px}
+  .card,.instruction,.note,.final-box{box-shadow:none;break-inside:avoid}
+  .card-media img{height:auto;max-height:none}
+  a[href^="https://wa.me"]::after{content:" (" attr(href) ")"}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#konten">Lewati ke konten utama</a>
+
+<header class="top">
+  <div class="container top-inner">
+    <a class="brand" href="#">
+      <img src="logo-promotor.jpg" alt="Logo Promotor" width="44" height="44" decoding="async">
+      <div class="brand-text">Titik Balik<small>Informasi Pembayaran</small></div>
+    </a>
+    <div class="live"><i aria-hidden="true"></i> Informasi Penting</div>
+  </div>
+</header>
+
+<main id="konten" tabindex="-1">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow reveal"><span aria-hidden="true">⚠️</span> Tindakan pembayaran diperlukan</div>
+
+      <h1 class="alert-title reveal d1"><span aria-hidden="true">⚠️</span><br><span class="red">PEMBAYARAN</span><br>PENDING!!!</h1>
+
+      <p class="sub reveal d2">
+        Pembayaran Anda saat ini berstatus <strong>Pending</strong> karena QRIS pembayaran telah mencapai limit.
+        Untuk menyelesaikan proses transaksi, <strong>silakan lakukan pembayaran ulang terlebih dahulu</strong>
+        sesuai instruksi Customer WhatsApp resmi.
+      </p>
+
+      <div class="instruction reveal d3">
+        <div class="instruction-head">
+          <div class="warn" aria-hidden="true">!</div>
+          <div>
+            <strong>Silakan ikuti instruksi berikut</strong>
+            <span>Pastikan seluruh proses dilakukan secara berurutan.</span>
+          </div>
+        </div>
+
+        <div class="step-list">
+          <div class="step">
+            <div class="num">01</div>
+            <div>
+              <h3>Lakukan Pembayaran Ulang Terlebih Dahulu</h3>
+              <p>Hubungi Customer WhatsApp dan lakukan pembayaran ulang sesuai arahan yang diberikan.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">02</div>
+            <div>
+              <h3>Pastikan Pembayaran Berhasil</h3>
+              <p>Setelah pembayaran ulang dilakukan, pastikan transaksi berhasil dan telah terverifikasi.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">03</div>
+            <div>
+              <h3>Ajukan QR Refund untuk Transaksi Sebelumnya</h3>
+              <p>Apabila saldo pada pembayaran sebelumnya sempat terpotong, setelah pembayaran ulang berhasil dan terverifikasi, silakan ajukan QR Refund untuk transaksi sebelumnya.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">04</div>
+            <div>
+              <h3>Simpan Bukti Transaksi</h3>
+              <p>Simpan bukti pembayaran sebelumnya dan pembayaran ulang untuk keperluan verifikasi.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta reveal d4">
+        <a class="btn btn-wa" href="https://wa.me/6282372511525" target="_blank" rel="noopener noreferrer">
+          <svg class="wa-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.03 0C5.46 0 .12 5.34.12 11.91c0 2.1.55 4.15 1.6 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.72 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.44-8.4ZM12.03 21.7h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.74.98 1-3.65-.23-.37a9.82 9.82 0 0 1-1.51-5.17C2.18 6.5 6.6 2.1 12.03 2.1a9.8 9.8 0 0 1 6.96 2.89 9.79 9.79 0 0 1 2.89 6.97c0 5.43-4.42 9.84-9.85 9.84Zm5.4-7.37c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.07 2.87 1.22 3.07c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.23 1.35.2 1.86.12.57-.09 1.75-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+          Hubungi Customer WhatsApp
+        </a>
+        <a class="btn btn-info" href="#informasi">Lihat Informasi Event</a>
+      </div>
+    </div>
+
+    <div class="poster-wrap reveal d2">
+      <img src="poster.jpg" alt="Poster Titik Balik" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="informasi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="mini">Titik Balik</div>
+      <h2>Informasi Event</h2>
+      <p>Gunakan materi berikut sebagai referensi untuk memastikan event dan area venue yang terkait dengan transaksi Anda.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-media">
+          <button class="zoom" type="button" data-zoom aria-label="Perbesar gambar venue layout">
+            <img src="layout.jpg" alt="Venue Layout Titik Balik" loading="lazy" decoding="async">
+          </button>
+        </div>
+        <div class="card-body">
+          <h3>Venue Layout</h3>
+          <p>Referensi pembagian area venue dan posisi panggung untuk event Titik Balik.</p>
+        </div>
+      </article>
+
+      <article class="card reveal d1">
+        <div class="card-media">
+          <button class="zoom" type="button" data-zoom aria-label="Perbesar gambar identitas promotor">
+            <img src="logo-promotor.jpg" alt="Logo Promotor Titik Balik" loading="lazy" decoding="async">
+          </button>
+        </div>
+        <div class="card-body">
+          <h3>Identitas Event</h3>
+          <p>Referensi visual identitas event yang berkaitan dengan informasi pembayaran ini.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="note reveal">
+      <strong>Penting:</strong> QR Refund untuk transaksi sebelumnya hanya diajukan <strong>setelah pembayaran ulang berhasil dan terverifikasi</strong>.
+      Apabila saldo transaksi sebelumnya tidak terpotong, tidak diperlukan pengajuan refund untuk transaksi tersebut.
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="container">
+    <div class="final-box reveal">
+      <h2>Butuh Bantuan?</h2>
+      <p>
+        Untuk mendapatkan instruksi pembayaran ulang dan proses selanjutnya, silakan hubungi Customer WhatsApp.
+        Siapkan bukti transaksi agar proses verifikasi dapat dilakukan dengan lebih cepat.
+      </p>
+      <a class="btn btn-wa final-wa" href="https://wa.me/6282372511525" target="_blank" rel="noopener noreferrer">
+        Customer WhatsApp · +62 823-7251-1525
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    Terima kasih atas perhatian dan kerja samanya.<br>
+    Simpan bukti transaksi untuk keperluan verifikasi.
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau gambar" aria-hidden="true">
+  <button class="close" type="button" aria-label="Tutup pratinjau">×</button>
+  <img id="lightboxImg" alt="" decoding="async">
+</div>
+
+<script>
+(()=>{
+'use strict';
+const box=document.getElementById('lightbox');
+const boxImg=document.getElementById('lightboxImg');
+const closeBtn=box.querySelector('.close');
+let lastFocus=null;
+let inerted=[];
+
+const openBox=btn=>{
+  const img=btn.querySelector('img');
+  lastFocus=btn;
+  boxImg.src=img.src;
+  boxImg.alt=img.alt;
+  inerted=[...document.body.children].filter(el=>el!==box&&!el.hasAttribute('inert'));
+  inerted.forEach(el=>el.setAttribute('inert',''));
+  box.setAttribute('aria-hidden','false');
+  box.classList.add('show');
+  document.body.style.overflow='hidden';
+  closeBtn.focus();
+};
+
+const closeBox=()=>{
+  box.classList.remove('show');
+  box.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+  inerted.forEach(el=>el.removeAttribute('inert'));
+  inerted=[];
+  if(lastFocus){lastFocus.focus();lastFocus=null}
+};
+
+document.querySelectorAll('[data-zoom]').forEach(btn=>{
+  btn.addEventListener('click',()=>openBox(btn));
+});
+
+box.addEventListener('click',e=>{
+  if(e.target===box||e.target===closeBtn)closeBox();
+});
+box.addEventListener('keydown',e=>{if(e.key==='Tab')e.preventDefault()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&box.classList.contains('show'))closeBox();
+});
+
+const reveals=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  reveals.forEach(el=>io.observe(el));
+}else{
+  reveals.forEach(el=>el.classList.add('in'));
+}
+})();
+</script>
+</body>
+</html>
